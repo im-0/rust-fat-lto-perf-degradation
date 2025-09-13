@@ -18,9 +18,11 @@ crate.
 RUSTFLAGS="-C target-cpu=x86-64-v2" cargo run --profile fat-lto-32cu -- --bench --save-baseline baseline
 #     2) benchmark with `target-cpu=x86-64-v3` and show difference
 RUSTFLAGS="-C target-cpu=x86-64-v3" cargo run --profile fat-lto-32cu -- --bench --baseline baseline
+```
 
-# or
+or
 
+```bash
 # Benchmark all LTO setting combinations:
 ./run
 ```
@@ -51,7 +53,7 @@ release: 1.89.0
 LLVM version: 20.1.7
 ```
 
-on AMD Ryzen 9 5950X and AMD Ryzen 9 9950X.
+on AMD Ryzen 9 5950X, AMD Ryzen 9 9950X and Intel Core i7-8565U.
 
 Benchmarking result looks like this:
 
