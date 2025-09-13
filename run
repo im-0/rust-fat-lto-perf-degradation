@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -xeu
+set -eu
 
 cargo clean
 
@@ -14,16 +14,21 @@ for profile in \
     echo
     echo "                    *** With profile ${profile} ***"
     echo
-    RUSTFLAGS="-C target-cpu=x86-64-v2" cargo run \
-            --quiet \
-            --profile "${profile}" \
-            -- \
-            --bench \
-            --save-baseline "baseline" >/dev/null 2>&1
-    RUSTFLAGS="-C target-cpu=x86-64-v3" cargo run \
-            --quiet \
-            --profile "${profile}" \
-            -- \
-            --bench \
-            --baseline "baseline"
+
+    (
+        set -xeu
+
+        RUSTFLAGS="-C target-cpu=x86-64-v2" cargo run \
+                --quiet \
+                --profile "${profile}" \
+                -- \
+                --bench \
+                --save-baseline "baseline" >/dev/null 2>&1
+        RUSTFLAGS="-C target-cpu=x86-64-v3" cargo run \
+                --quiet \
+                --profile "${profile}" \
+                -- \
+                --bench \
+                --baseline "baseline"
+    )
 done
