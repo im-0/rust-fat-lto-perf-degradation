@@ -1,0 +1,44 @@
+[package]
+name = "rust-thin-lto-perf-degradation"
+description = "Benchmark that demonstrates the Fat LTO performance degradation"
+version = "0.1.0"
+edition = "2024"
+
+authors = ["Ivan Mironov <mironov.ivan@gmail.com>"]
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/im-0/rust-thin-lto-perf-degradation"
+readme = "README.md"
+
+[dependencies]
+criterion = { version = "0.7" }
+nalgebra = { version = "0.34.0" }
+rand = { version = "0.9" }
+
+[profile.no-lto]
+inherits = "release"
+lto = "off"
+
+[profile.thin-local-lto-32cu]
+inherits = "release"
+lto = false
+codegen-units = 32
+
+[profile.fat-lto-1cu]
+inherits = "release"
+lto = "fat"
+codegen-units = 1
+
+[profile.fat-lto-32cu]
+inherits = "release"
+lto = "fat"
+codegen-units = 32
+
+[profile.thin-lto-1cu]
+inherits = "release"
+lto = "thin"
+codegen-units = 1
+
+[profile.thin-lto-32cu]
+inherits = "release"
+lto = "thin"
+codegen-units = 32

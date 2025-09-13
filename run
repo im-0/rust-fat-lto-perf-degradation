@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -xeu
+
+cargo clean
+
+for profile in \
+        "no-lto" \
+        "thin-local-lto-32cu" \
+        "fat-lto-1cu" \
+        "fat-lto-32cu" \
+        "thin-lto-1cu" \
+        "thin-lto-32cu"; do
+    echo
+    echo "                    *** With profile ${profile} ***"
+    echo
+    RUSTFLAGS="-C target-cpu=x86-64-v2" cargo run \
+            --quiet \
+            --profile "${profile}" \
+            -- \
+            --bench \
+            --save-baseline "baseline" >/dev/null 2>&1
+    RUSTFLAGS="-C target-cpu=x86-64-v3" cargo run \
+            --quiet \
+            --profile "${profile}" \
+            -- \
+            --bench \
+            --baseline "baseline"
+done
