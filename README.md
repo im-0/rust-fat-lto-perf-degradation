@@ -1,4 +1,4 @@
-# rust-thin-lto-perf-degradation
+# rust-fat-lto-perf-degradation
 
 This is a reproducer for a surprising performance regression of a code
 compiled with `-C target-cpu=x86-64-v3` (or `-C target-cpu=native`) and
@@ -8,7 +8,7 @@ default value of `codegen-units` (which is `16`) while working on a
 benchmarks within [nalgebra](https://github.com/sebcrozet/nalgebra)
 crate.
 
-## usage
+## Usage
 
 ```bash
 ./run
