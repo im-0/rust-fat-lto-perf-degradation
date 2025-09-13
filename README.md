@@ -13,6 +13,15 @@ crate.
 **IMPORTANT:** You need a CPU which supports the `x86-64-v3` feature set.
 
 ```bash
+# Benchmark fat LTO + `codegen-units=32`:
+#     1) benchmark with `target-cpu=x86-64-v2`
+RUSTFLAGS="-C target-cpu=x86-64-v2" cargo run --profile fat-lto-32cu -- --bench --save-baseline baseline
+#     2) benchmark with `target-cpu=x86-64-v3` and show difference
+RUSTFLAGS="-C target-cpu=x86-64-v3" cargo run --profile fat-lto-32cu -- --bench --baseline baseline
+
+# or
+
+# Benchmark all LTO setting combinations:
 ./run
 ```
 
