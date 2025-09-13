@@ -1,5 +1,5 @@
 [package]
-name = "rust-thin-lto-perf-degradation"
+name = "rust-fat-lto-perf-degradation"
 description = "Benchmark that demonstrates the Fat LTO performance degradation"
 version = "0.1.0"
 edition = "2024"
