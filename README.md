@@ -10,6 +10,8 @@ crate.
 
 ## Usage
 
+**IMPORTANT:** You need a CPU which supports the `x86-64-v3` feature set.
+
 ```bash
 ./run
 ```
