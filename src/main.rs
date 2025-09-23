@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
 use std::env::args;
+use std::hint::black_box;
 use std::process::{Command, exit};
 
 use criterion::{Criterion, criterion_group};
@@ -37,6 +38,6 @@ fn bench_mat4_transform_point3(criterion: &mut Criterion) {
     );
 
     criterion.bench_function("bench_mat4_transform_point3", |b| {
-        b.iter(|| mat.transform_point(&pt));
+        b.iter(|| black_box(mat).transform_point(black_box(&pt)));
     });
 }
